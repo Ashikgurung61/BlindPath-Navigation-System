@@ -1,0 +1,118 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Blind Path Navigation</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--          //  background-image:url('https://th.bing.com/th/id/OIP.Q1xjNu2aiblEeOSQ20HuQgHaEy?rs=1&pid=ImgDetMain');-->
+
+<!--            color: #f4f4f4;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            height: 100vh;-->
+<!--        }-->
+
+<!--        .header {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        .header h1 {-->
+<!--            font-size: 28px;-->
+<!--            color: #00c896;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+<!--        .container {-->
+<!--            background: #1e1e1e;-->
+<!--            padding: 30px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 10px rgba(0, 200, 150, 0.2);-->
+<!--            text-align: center;-->
+<!--            width: 80%;-->
+<!--            max-width: 400px;-->
+<!--        }-->
+<!--        .button {-->
+<!--            display: block;-->
+<!--            width: 95%;-->
+<!--            padding: 15px;-->
+<!--            margin: 10px 0;-->
+<!--            font-size: 18px;-->
+<!--            color: #fff;-->
+<!--            background: #00c896;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--            text-decoration: none;-->
+<!--            transition: background 0.3s;-->
+<!--        }-->
+<!--        .button:hover {-->
+<!--            background: #00a57c;-->
+<!--        }-->
+<!--        .button.secondary {-->
+<!--            background: #ff4081;-->
+<!--        }-->
+<!--        .button.secondary:hover {-->
+<!--            background: #e73370;-->
+<!--        }-->
+<!--        .description {-->
+<!--            font-size: 16px;-->
+<!--            color: #bbb;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid" style="background-image:url('magic-g1db898374_1920.jpg')">-->
+
+
+<!--    <div class="header">-->
+<!--        <h1>Blind Path Navigation</h1>-->
+<!--        <p>Empowering the visually impaired with safe navigation.</p>-->
+<!--    </div>-->
+<!--    <div class="container">-->
+<!--        <div class="description">-->
+<!--            <p>Menu</p>-->
+<!--        </div>-->
+<!--        <a href="#" class="button secondary">Add New Face</a>-->
+<!--        <a href="#" class="button">Start Journey</a>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Recognition</title>
+</head>
+<body>
+    <h1>Speech Recognition App</h1>
+    <button id="listenButton">Listen and Execute</button>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("listenButton").addEventListener("click", async () => {
+            const responseElement = document.getElementById("response");
+            responseElement.textContent = "Listening...";
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/listen-and-execute", {
+                    method: "POST",
+                });
+                const data = await response.json();
+                responseElement.textContent = data.message;
+            } catch (error) {
+                responseElement.textContent = "Error: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
